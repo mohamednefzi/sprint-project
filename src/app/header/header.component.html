@@ -4,14 +4,14 @@
     <a class="nav-link font-italic" href="#">≡Sprint</a>
       <form class="form-inline">
           <button id="qsLoginBtn"
-          class="btn btn-primary my-2 my-sm-0"
+          class="btn  my-2 my-sm-0"
           *ngIf="!auth.isAuthenticated()"
           (click)="auth.login()" type="button">
             Log In
         </button>
 
         <button id="qsLogoutBtn"
-          class="btn btn-primary my-2 my-sm-0"
+          class="btn my-2 my-sm-0"
           *ngIf="auth.isAuthenticated()"
           (click)="auth.logout()" type="button">
             Log Out
