@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+
+        <div class="table-wrapper-2">
+
+            <!--Table-->
+            <table class="table table-responsive-md">
+                <thead class="mdb-color lighten-4">
+                    <tr>
+
+                        <th class="th-lg">Length</th>
+                        <th class="th-lg">Status</th>
+                        <th class="th-lg">Date</th>
+                        <th class="th-lg">Start</th>
+                        <th class="th-lg">Finish</th>
+                        <th class="th-lg">Description</th>
+                        <th class="th-lg"></th>
+                        <th class="th-lg"></th>
+                        <th class="th-lg"></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor= "let sprint of test">
+                  <tr>
+                    <td>{{sprint.length}}</td>
+                    <td>{{sprint.status}}</td>
+                    <td>{{sprint.date}}</td>
+                    <td>{{sprint.desc}}</td>
+                    <td>{{sprint.finish}}</td>
+                    <td>{{sprint.desc}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+            </table>
+            <!--Table-->
+
+        </div>
+
+    </div>
+</div>

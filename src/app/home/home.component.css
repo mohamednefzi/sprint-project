@@ -1,3 +1,17 @@
 a {
   cursor: pointer;
 }
+
+.container{
+  height: 600px;
+
+
+}
+.card-body{
+
+  height: 100%;
+}
+.link{
+  color: black;
+  text-decoration: underline;
+}

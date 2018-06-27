@@ -1,0 +1,69 @@
+.card {
+  width: 20em;
+  height: 30em;
+  box-shadow: 2px 1px 8px 1px rgba(0,0,0,.3);
+  transition: .3s;
+  padding: 1.5em 1.25em 1em;
+}
+
+.select-text{
+  position: relative;
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 10px 10px 0;
+  font-size: 11pt;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.label-hint-valid{
+  text-align: right;
+  width: 100%;
+}
+
+.button-content {
+  background: 0 0;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: .6em 2em;
+  outline: 0;
+  font: inherit;
+  cursor: inherit;
+}
+
+
+
+.start-button {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding: 0;
+  background-color: #3f51b5;
+  color: #fff;
+  outline: 0;
+  border-radius: 2px;
+  font-size: 11pt;
+  text-decoration: none;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.start-button.disabled{
+  color: #a9a9a9;
+  background: rgba(0,0,0,.12);
+  cursor: default;
+}
+
+.checkbox input{
+
+}
+.checkbox input:active, .checkbox input:checked:active {
+
+}
+.checkbox input:checked {
+
+}

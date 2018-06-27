@@ -13,8 +13,8 @@ export class AuthService {
     domain: 'mohamednefzi.auth0.com',
     responseType: 'token id_token',
     audience: 'https://mohamednefzi.auth0.com/userinfo',
-    redirectUri:'http://localhost:4200/callback',
-    scope: 'openid'
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid profile'
   });
 
   constructor(public router: Router) {}
@@ -27,9 +27,10 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        console.log('login ok redirect to profile');
+        this.router.navigate(['/profile']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -42,6 +43,7 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('email',  authResult.idTokenPayload.name);
   }
 
   public logout(): void {
@@ -49,8 +51,9 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('email');
     // Go back to the home route
-    this.router.navigate(['/']);
+    this.router.navigate(['/home-main']);
   }
 
   public isAuthenticated(): boolean {

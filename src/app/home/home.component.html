@@ -1,6 +1,36 @@
-<h4 *ngIf="auth.isAuthenticated()">
-  You are logged in!
-</h4>
-<h4 *ngIf="!auth.isAuthenticated()">
-  You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
-</h4>
+<!-- <div *ngIf="auth.isAuthenticated()">
+  <app-profile>
+  </app-profile>
+
+</div>
+<div *ngIf="!auth.isAuthenticated()">
+ <app-home-main>
+ </app-home-main>
+</div> -->
+
+
+<div class="container d-flex  p-2 justify-content-around align-items-center flex-column">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body ">
+        <h5 class="card-title text-center">About</h5>
+        <p class="card-text"><p>Sprint is a minimalist desktop time management application inspired by the
+          <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Technique</a>.</p>
+          <p>Choose a sprint length, enter a brief description of the activity, and get things done.</p>
+          <p>Preferred</p>
+          <p>browser:<a href="https://www.google.com/chrome/">Chrome</a>.</p>
+          <p><a class="link" href="#" data-toggle="modal" data-target="#exampleModalCenter">Terms and conditions</a>.</p>
+
+      </div>
+    </div>
+    <div>
+      <strong>version 0.2</strong>
+    </div>
+    <div>
+      <a class="" color="primary" href="mailto:daniel.tucunduva@gmail.com?subject=Sprint bug report" mat-button="" tabindex="0"
+        aria-disabled="false">
+        <span class="mat-button-wrapper">Report bug</span>
+      </a>
+    </div>
+
+  </div>
+  <app-modal-terms-and-conditions></app-modal-terms-and-conditions>

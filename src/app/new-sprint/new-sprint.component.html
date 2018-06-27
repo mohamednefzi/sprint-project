@@ -1,0 +1,38 @@
+<form (ngSubmit)="start()" class='d-f justify-content-center align-items-center'>
+  <div class='card d-f justify-content-around align-items-center '>
+    <h4 style="margin-bottom: 3px;">Start a sprint!</h4>
+    <div class=''>
+      <label class="select-label">Choose length *</label>
+      <select class="select-text" #lengthSprint name='lengthSprint'>
+        <!---->
+        <option *ngFor="let val of choiseSelectBoxe" value="{{val.name}}" class="ng-star-inserted"> {{val.name}} </option>
+
+      </select>
+      <span class="select-highlight"></span>
+      <span class="select-bar"></span>
+
+      <div class="label-hint-valid">
+        <label>✔</label>
+      </div>
+    </div>
+    <div>
+      <div class="label-hint" style="margin-bottom: 0px;">
+        <label>Description *</label>
+      </div>
+      <textarea #desc (keyup)="onKey($event,divButton)" name='desc' placeholder="What will you be doing?" rows="3" class="" style="margin-bottom: 0px;"></textarea>
+      <div class="label-hint-valid">
+        <label>Required</label>
+      </div>
+    </div>
+      <div class="checkbox">
+        <label>
+            <input type="checkbox" #checkBox name="checkbox">
+          <span class="box"></span> Notify when completed </label>
+      </div>
+
+      <div  #divButton class="start-button disabled" color="primary">
+          <button class="button-content" type="submit">Start</button>
+        </div>
+  </div>
+
+</form>
