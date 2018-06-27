@@ -51,7 +51,7 @@ export class NewSprintComponent implements OnInit {
       {
         length: this.length.nativeElement.value,
         desc: this.description.nativeElement.value,
-        isChecked: this.checkBox.indeterminate
+        isChecked: this.checkBox.checked
       }
     ]);
   }

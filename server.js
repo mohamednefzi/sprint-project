@@ -21,7 +21,7 @@ class Server {
     console.log('server start running at server constructor');
     this.initViewEngine();
     this.initExpressMiddleWare();
-    this. initRoutes()
+    this.initRoutes();
     this.start();
   }
 

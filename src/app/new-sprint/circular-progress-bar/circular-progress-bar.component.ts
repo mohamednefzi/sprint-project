@@ -2,10 +2,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PushNotificationsService } from 'ng-push';
 import { DataService } from '../../core/data.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 import { ISprint } from 'shared/interfaces';
+import {Moment} from 'moment';
 
 @Component({
   selector: 'app-circular-progress-bar',
@@ -16,7 +17,7 @@ export class CircularProgressBarComponent implements OnInit {
    circle: MyCanvasProgressBar;
   @ViewChild('myCanvas') canvasRef: ElementRef;
   @ViewChild('timer') timerElement: ElementRef;
-  @ViewChild('stopButton') stopButton: ElementRef;
+  @ViewChild('stopButton') stopButton: HTMLElement;
 
   public audio: HTMLAudioElement;
 
@@ -32,7 +33,8 @@ export class CircularProgressBarComponent implements OnInit {
   private isChecked: boolean ;
   constructor(private pushNotifications: PushNotificationsService,
               private dataService: DataService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
             ) {
 
     this.audio = new Audio();
@@ -54,6 +56,9 @@ export class CircularProgressBarComponent implements OnInit {
 
 
   start() {
+    const d = new Date();
+    this.sprint.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    this.sprint.start =  d.getHours() + ':' + (d.getMinutes()) + ':' + d.getSeconds();
     this.circle.start();
   }
 
@@ -68,6 +73,23 @@ export class CircularProgressBarComponent implements OnInit {
         res.notification.close();
       }
     });
+  }
+
+  save() {
+    console.log(this.sprint.start);
+    const d = new Date();
+    this.sprint.finish =  d.getHours() + ':' + (d.getMinutes()) + ':' + d.getSeconds();
+    this.sprint.status = this.timerElement.nativeElement.innerHTML.includes('100')
+                      ? 'completed' : `canceled at ( ${this.timerElement.nativeElement.innerHTML}`;
+  this.dataService.insertNewSprints(this.sprint).subscribe((sprint: ISprint) => {
+      if (sprint) {
+        console.log('sprint save in the db');
+        this.router.navigate(['/profile']);
+      }else {
+        console.log(' error : sprint save in the db');
+      }
+  })
+
   }
 }
 
@@ -134,7 +156,7 @@ this._ctx = ctx;
   }
 
   stop() {
-    console.log(this.component.sprint.length);
+    console.log(this.component.isChecked);
     this.startTimer = !this.startTimer;
     if (this.startTimer && this.percent < 1 ) {
       this.timeOut =  setTimeout(this.start.bind(this), 1);
@@ -142,6 +164,17 @@ this._ctx = ctx;
       clearTimeout(this.timeOut);
     }
 
+  }
+
+  cancelAAndSave() {
+    this.component.save();
+
+
+  }
+  continue() {
+    this.stop();
+    console.log('continue');
+    console.log(this.startTimer);
   }
 }
 

@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,10 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     PastSprintComponent,
     NewSprintComponent,
-    CircularProgressBarComponent,
-
-
-
+    CircularProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -55,8 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PushNotificationsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-
+    HttpClientModule
   ],
   providers: [AuthService,  CircularProgressBarComponent, DataService, HttpClient],
   bootstrap: [AppComponent]

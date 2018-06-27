@@ -4,7 +4,7 @@ class SprintController {
 
   constructor(router){
     router.get('/',this.getAllSprints.bind(this));
-    router.post('/',this.insertSprint(this));
+    router.post('/',this.insertSprint.bind(this));
   }
 
   getAllSprints(req,res){
@@ -22,7 +22,7 @@ class SprintController {
   insertSprint(req,res){
 
     console.log('Sprint Controller.insertSprint');
-    sprintRepository.insertNewSprint(req.body, state, (err, sprintData)=>{
+    sprintRepository.insertNewSprint(req.body, (err, sprintData)=>{
       if(err){
         console.log('sprintRepository error : '+ err);
         res.json({status : false, error: 'Insert failed', sprint: null});
