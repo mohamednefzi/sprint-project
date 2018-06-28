@@ -14,12 +14,14 @@ const database = require('./lib/database');
 const path = require('path');
 const debug = require('debug')('server');
 const app = express();
-const port = 3000;
+const port = 4200;
 
 class Server {
   constructor() {
     console.log('server start running at server constructor');
     this.initViewEngine();
+    this.initCloseDB();
+    this.initOpenDB();
     this.initExpressMiddleWare();
     this.initRoutes();
     this.start();
@@ -47,13 +49,13 @@ class Server {
 
   initExpressMiddleWare() {
     app.use(favicon(path.join(__dirname, '/src/favicon.ico')));
-    app.use(express.static(path.join(__dirname,'/public')));
+    app.use(express.static(path.join(__dirname,'/dist')));
     app.use(morgan('dev'));
     app.use(bodyParser.urlencoded({extended:true}));
     app.use(bodyParser.json());
     app.use(errorhandler());
     app.use(cookieParser());
-    app.use(csrf({ cookie: true }));
+    // app.use(csrf({ cookie: true }));
 
   //   app.use((req, res, next) => {
   //     let csrfToken = req.csrfToken();
@@ -63,13 +65,26 @@ class Server {
   // });
   }
 
+  initOpenDB(){
+     database.open(()=>{
+      console.log('mongoose connected')
+    })
+  }
+
+  initCloseDB(){
+    process.on('SIGINT', () => {
+      console.log('SIGINT: Closing MongoDB connection');
+      database.close();
+  });
+
+  }
 
   initRoutes() {
     router.load(app, './controllers');
 
     // redirect all others to the index (HTML5 history)
     app.all('/*', (req, res) => {
-        res.sendFile(__dirname + '/src/index.html');
+        res.sendFile(__dirname + '/dist/index.html');
     });
 
 }

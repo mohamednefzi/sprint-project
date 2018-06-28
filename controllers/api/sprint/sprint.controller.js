@@ -5,6 +5,7 @@ class SprintController {
   constructor(router){
     router.get('/',this.getAllSprints.bind(this));
     router.post('/',this.insertSprint.bind(this));
+    router.delete('/',this.deleteSprints.bind(this));
   }
 
   getAllSprints(req,res){
@@ -15,7 +16,7 @@ class SprintController {
         res.json(null);
       }else {
         console.log('Sprint Controller.getAllSprints ok:', data);
-        res.json(data);
+        res.json(data.sprintList);
       }
     });
   }
@@ -28,8 +29,21 @@ class SprintController {
         res.json({status : false, error: 'Insert failed', sprint: null});
       }else{
         console.log('insert ok');
-        res.json({status: true, error, sprint: sprintData})
+        res.json({status: true, error: null, sprint: sprintData})
       }
+    });
+  }
+
+  deleteSprints(req,res){
+    console.log('sprint controller delete start');
+
+    sprintRepository.deleteData((err) => {
+      if(err){
+        console.log('delete data sprint error',err);
+        res.json({status: false});
+      }
+      console.log('delete data sprint ok');
+      res.json({status: true});
     });
   }
 

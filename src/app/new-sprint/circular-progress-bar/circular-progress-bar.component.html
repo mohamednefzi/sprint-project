@@ -1,19 +1,20 @@
-<div>
-  <canvas #myCanvas width="500" height="500"></canvas>
+<div class='container d-f p-2 flex-column justify-content-center align-items-center '>
+  <div class='container d-f p-2 flex-column justify-content-center align-items-center ' >
+    <canvas #myCanvas width="500" height="500"></canvas>
+  </div>
+  <div class='container d-f p-2 flex-column justify-content-center align-items-center '>
+    <p #timer name='timer'></p>
+    <button #stopButton (click)='circle.stop()' type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Stop</button>
+  </div>
 </div>
-<div>
-<p #timer name='timer'></p>
-<button #stopButton (click)='circle.stop()' data-toggle="modal" data-target="#exampleModalCenter">Stop</button>
-</div>
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document" style="width: 300px">
     <div class="modal-content">
       <div class="modal-body">
         On hold. Cancel sprint?
       </div>
       <div class="modal-footer d-f justify-content-start">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="circle.cancelAAndSave()">Yes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="circle.save()">Yes</button>
         <button type="button" class="btn btn-secondary" style="background-color: rgb(184, 18, 120)" data-dismiss="modal" (click)="circle.continue()">No</button>
       </div>
     </div>

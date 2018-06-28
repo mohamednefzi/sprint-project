@@ -4,3 +4,30 @@
   overflow-y: scroll;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+
+div#delete {
+  text-align: center;
+  margin-top: 10%;
+}
+div#delete button {
+  background: 0 0;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: .6em 2em;
+  outline: 0;
+  font: inherit;
+  cursor: inherit;
+}
+
+div#delete button:hover{
+  background: orangered;
+  color: white;
+  border: none;
+  margin: 0;
+  padding: .6em 2em;
+  outline: 0;
+  font: inherit;
+  cursor: inherit;
+}

@@ -21,3 +21,8 @@ export interface IRouting {
   routes: ModuleWithProviders;
   components: any[];
 }
+
+export interface IPagedResults<T> {
+  count: number;
+  results: T;
+}

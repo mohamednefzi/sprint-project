@@ -19,14 +19,14 @@
                         <th class="th-lg"></th>
                     </tr>
                 </thead>
-                <tbody *ngFor= "let sprint of test">
+                <tbody *ngFor= "let sprint of sprintList">
                   <tr>
                     <td>{{sprint.length}}</td>
                     <td>{{sprint.status}}</td>
                     <td>{{sprint.date}}</td>
-                    <td>{{sprint.desc}}</td>
+                    <td>{{sprint.start}}</td>
                     <td>{{sprint.finish}}</td>
-                    <td>{{sprint.desc}}</td>
+                    <td>{{sprint.description}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -38,4 +38,10 @@
         </div>
 
     </div>
+
 </div>
+
+<div id='delete' class='d-f p-2 justify-content-center align-items-center'>
+  <button (click)='delete($event)' class='btn-content'>delete all data</button>
+</div>
+

@@ -42,6 +42,9 @@ export class CircularProgressBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sprint.length = this.route.snapshot.params['length'];
+    this.sprint.description = this.route.snapshot.params['desc'];
+    this.isChecked = this.route.snapshot.params['isChecked'];
     this.pushNotifications.requestPermission();
     this.audio.src = '../assets/beep.mp3';
     this.audio.load();
@@ -49,9 +52,7 @@ export class CircularProgressBarComponent implements OnInit {
     console.log('init circular component');
     this.circle = new MyCanvasProgressBar(this.canvasRef.nativeElement, this);
     this.start();
-     this.sprint.length = this.route.snapshot.params['length'];
-     this.sprint.description = this.route.snapshot.params['desc'];
-     this.isChecked = this.route.snapshot.params['isChecked'];
+
   }
 
 
@@ -77,16 +78,20 @@ export class CircularProgressBarComponent implements OnInit {
 
   save() {
     console.log(this.sprint.start);
+    this.sprint.idUser = localStorage.getItem('id_token');
     const d = new Date();
+    console.log(this.sprint);
     this.sprint.finish =  d.getHours() + ':' + (d.getMinutes()) + ':' + d.getSeconds();
     this.sprint.status = this.timerElement.nativeElement.innerHTML.includes('100')
-                      ? 'completed' : `canceled at ( ${this.timerElement.nativeElement.innerHTML}`;
+                      ? 'completed' : `canceled at ( ${this.timerElement.nativeElement.innerHTML} )`;
+
   this.dataService.insertNewSprints(this.sprint).subscribe((sprint: ISprint) => {
       if (sprint) {
         console.log('sprint save in the db');
         this.router.navigate(['/profile']);
       }else {
         console.log(' error : sprint save in the db');
+        this.router.navigate(['/home']);
       }
   })
 
@@ -108,7 +113,7 @@ class MyCanvasProgressBar {
 
   constructor(private cnv, private component) {
     this.ctx = cnv.getContext('2d');
-    this.timeEnd = 5;
+    this.timeEnd =this.convertTimeEnd();
     this.second = 0;
     this.percent = (this.second / this.timeEnd).toFixed(1);
     this.startTimer = true;
@@ -140,7 +145,7 @@ this._ctx = ctx;
     start(): void {
 
     if (this.percent <=  1   && this.startTimer) {
-      // this.second = Math.floor(this.second);
+
       this.timeOut =  setTimeout(this.start.bind(this), 1);
       this.second += 1;
     } else {
@@ -148,6 +153,8 @@ this._ctx = ctx;
       this.component.audio.play();
       clearTimeout(this.timeOut);
       this.startTimer = false;
+      this.save();
+
     }
     this.percent = (this.second / (this.timeEnd)) / 100;
     this.component.timerElement.nativeElement.innerHTML = (this.percent * 100).toFixed(0) + ' % ' ;
@@ -162,11 +169,12 @@ this._ctx = ctx;
       this.timeOut =  setTimeout(this.start.bind(this), 1);
     } else {
       clearTimeout(this.timeOut);
+
     }
 
   }
 
-  cancelAAndSave() {
+  save() {
     this.component.save();
 
 
@@ -175,6 +183,23 @@ this._ctx = ctx;
     this.stop();
     console.log('continue');
     console.log(this.startTimer);
+  }
+
+  convertTimeEnd(): number {
+    const length = this.component.sprint.length;
+    if (length.includes('Instant')) {
+      return 5;
+    }else if (length.includes('Very short')) {
+      return 5 * 60;
+    } else if (length.includes('Short')) {
+      return 10 * 60;
+    } else if (length.includes('Pomodoro')) {
+      return 25 * 60;
+    } else if (length.includes('Long')) {
+      return 45 * 60;
+    } else if (length.includes('Very Long')) {
+      return 60 * 60;
+    }
   }
 }
 

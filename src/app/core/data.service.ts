@@ -15,6 +15,7 @@ export class DataService {
   }
 
   getAllSprints(): Observable<ISprint[]> {
+    console.log('dataservice get all sprints');
     return this.http.get<ISprint[]>(this.baseUrl)
         .pipe(
             map((sprints: ISprint[]) => {
@@ -26,6 +27,8 @@ export class DataService {
 
 
   insertNewSprints(sprint: ISprint ): Observable<ISprint> {
+    console.log('data service insert.sprint')
+    console.log(sprint)
     return this.http.post<ISprintResponse>(this.baseUrl, sprint)
     .pipe(map((data) => {
       console.log('insert costumers status class data service : ', data.status);
@@ -41,5 +44,10 @@ export class DataService {
       return Observable.throw(errMessage);
     }
     return Observable.throw(error || 'Node.js server error');
+  }
+
+  deleteDataSprint(): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl)
+    .pipe(catchError(this.handleError));
   }
 }
