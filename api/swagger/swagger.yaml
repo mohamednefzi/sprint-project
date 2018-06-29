@@ -6,12 +6,13 @@ host: localhost:4200
 basePath: /api/sprint
 schemes:
   - http
+  - https
 consumes:
   - application/json
 produces:
   - application/json
 paths:
- /:
+ /home:
     x-swagger-router-controller: sprint.controller
     get:
       description: return all past sprints

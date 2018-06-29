@@ -17,6 +17,7 @@ const app = express();
 const port = 4200;
 
 //add for swagger
+const swaggerUI= require('swagger-ui-express')
 
 class Server {
   constructor() {
@@ -93,14 +94,6 @@ initSwagger(){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
-
-  app.get('/', function(req, res, next) {
-    // Handle the get for this route
-  });
-
-  app.post('/', function(req, res, next) {
-   // Handle the post for this route
   });
  }
 

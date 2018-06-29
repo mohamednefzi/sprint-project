@@ -91,11 +91,11 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "less": "^3.0.4",
     "protractor": "^5.3.2",
+    "should": "^7.1.0",
+    "supertest": "^1.0.0",
     "swagger-editor": "^3.6.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "2.6.2",
-    "should": "^7.1.0",
-    "supertest": "^1.0.0"
+    "typescript": "2.6.2"
   }
 }
