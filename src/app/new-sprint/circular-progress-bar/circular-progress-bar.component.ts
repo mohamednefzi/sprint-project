@@ -5,7 +5,7 @@ import { DataService } from '../../core/data.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
-import { ISprint } from 'shared/interfaces';
+import { ISprint } from '../../shared/interfaces';
 import {Moment} from 'moment';
 
 @Component({

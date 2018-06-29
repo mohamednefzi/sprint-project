@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ISprint } from 'shared/interfaces';
+import { ISprint } from '../../shared/interfaces';
 import { DataService } from '../../core/data.service';
 import { Router } from '@angular/router';
+import { DataFilterService } from '../../core/data-filter.service';
 
 @Component({
   selector: 'app-past-sprint',
@@ -12,7 +13,9 @@ export class PastSprintComponent implements OnInit {
 
 
   sprintList: ISprint[] = [];
+  filteredSprintList: ISprint[] = [];
   constructor(private dataService: DataService,
+              private dataFilter: DataFilterService,
               private router: Router) {}
 
   ngOnInit() {
@@ -21,7 +24,7 @@ export class PastSprintComponent implements OnInit {
 
   getAllSprint() {
     this.dataService.getAllSprints().subscribe((sprints: ISprint[]) => {
-      this.sprintList = sprints;
+      this.sprintList = this.filteredSprintList = sprints;
     }, (err) => {console.log('error get all sprint in component')});
   }
 
@@ -38,5 +41,18 @@ delete(event: Event) {
       console.log('error delete past sprint ts');
     }
   })
+}
+
+filterChanged(filterText: string) {
+  console.log('tab pas sprint Component . filter changed', filterText);
+
+  if (filterText && this.sprintList) {
+    console.log('tab pas sprint Component . filter changed', filterText);
+    console.log('tab pas sprint Component . filter changed', this.sprintList);
+    const props = ['length', 'status', 'date', 'start', 'finish', 'description'];
+    this.filteredSprintList = this.dataFilter.filter(this.sprintList, props, filterText);
+  }else {
+    this.filteredSprintList = this.sprintList;
+  }
 }
 }

@@ -16,6 +16,8 @@ const debug = require('debug')('server');
 const app = express();
 const port = 4200;
 
+//add for swagger
+
 class Server {
   constructor() {
     console.log('server start running at server constructor');
@@ -24,6 +26,7 @@ class Server {
     this.initOpenDB();
     this.initExpressMiddleWare();
     this.initRoutes();
+    this.initSwagger();
     this.start();
   }
 
@@ -36,6 +39,8 @@ class Server {
       );
     });
   }
+
+
 
   initViewEngine() {
     const hbs = exphbs.create({
@@ -55,14 +60,7 @@ class Server {
     app.use(bodyParser.json());
     app.use(errorhandler());
     app.use(cookieParser());
-    // app.use(csrf({ cookie: true }));
 
-  //   app.use((req, res, next) => {
-  //     let csrfToken = req.csrfToken();
-  //     res.locals._csrf = csrfToken;
-  //     res.cookie('XSRF-TOKEN', csrfToken);
-  //     next();
-  // });
   }
 
   initOpenDB(){
@@ -88,7 +86,26 @@ class Server {
     });
 
 }
+
+//swagger add
+initSwagger(){
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+  app.get('/', function(req, res, next) {
+    // Handle the get for this route
+  });
+
+  app.post('/', function(req, res, next) {
+   // Handle the post for this route
+  });
+ }
+
+
 }
 
 const server = new Server();
-console.log('serve write on page');
+

@@ -1,0 +1,42 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: sprint project
+host: localhost:4200
+basePath: /api/sprint
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+ /:
+    x-swagger-router-controller: sprint.controller
+    get:
+      description: return all past sprints
+      operationId: getAllSprints
+      responses:
+        200:
+          description: get All sprints , succes
+          schema:
+            type: array
+            items:
+              type: object
+              propreties:
+                idUser:
+                  type: string
+                length:
+                  type: string
+                status:
+                  type: string
+                date:
+                  type: string
+                start:
+                  type: string
+                finish:
+                  type: string
+                description:
+                  type: string
+
+

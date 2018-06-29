@@ -26,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {DataService} from './core/data.service';
 import { HttpClient, HttpClientModule  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FilterComponent } from './shared/filter/filter.component';
+import {DataFilterService} from './core/data-filter.service';
 
 
 
@@ -41,7 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     PastSprintComponent,
     NewSprintComponent,
-    CircularProgressBarComponent
+    CircularProgressBarComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [AuthService,  CircularProgressBarComponent, DataService, HttpClient],
+  providers: [AuthService,  CircularProgressBarComponent, DataService, HttpClient,DataFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

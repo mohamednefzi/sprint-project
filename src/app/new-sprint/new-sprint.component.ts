@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CircularProgressBarComponent } from './circular-progress-bar/circular-progress-bar.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ISprint } from 'shared/interfaces';
+import { ISprint } from '../shared/interfaces';
 
 @Component({
   selector: 'app-new-sprint',
