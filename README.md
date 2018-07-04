@@ -3,6 +3,7 @@
 1) npm install
 2) ng build
 3) nodemon server.js
+http://localhost:4200
 
 ## to run swagger doc
 1) npm install swagger -g

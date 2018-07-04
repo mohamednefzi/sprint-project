@@ -11,7 +11,8 @@ import { ISprint } from '../shared/interfaces';
 export class NewSprintComponent implements OnInit {
   @ViewChild('lengthSprint') length: ElementRef;
   @ViewChild('desc') description: ElementRef;
-  @ViewChild('checkBox') checkBox: HTMLInputElement;
+  @ViewChild('checkBox') checkBox;
+  isChecked= false;
 
   choiseSelectBoxe = [
     { value: 1, name: 'Instant (5s)' },
@@ -45,13 +46,14 @@ export class NewSprintComponent implements OnInit {
   }
 
   start() {
-    console.log('start new sprint');
+    console.log('start new sprint', this.isChecked);
+
     this.router.navigate([
       '/newSprintStart',
       {
         length: this.length.nativeElement.value,
         desc: this.description.nativeElement.value,
-        isChecked: this.checkBox.checked
+        isChecked: this.isChecked
       }
     ]);
   }

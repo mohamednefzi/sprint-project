@@ -1,43 +1,65 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: sprint project
+  title: "sprint project"
 host: localhost:4200
-basePath: /api/sprint
+basePath: /
 schemes:
   - http
-  - https
 consumes:
-  - application/json
+  - "application/json"
 produces:
-  - application/json
+  - "application/json"
 paths:
- /home:
-    x-swagger-router-controller: sprint.controller
+  "/api/sprint":
     get:
-      description: return all past sprints
-      operationId: getAllSprints
+      description: "get all sprints"
+      summary: "get sprints tab"
+      consumes: []
+      produces:
+        - applications/json
+        - text/json
       responses:
-        200:
-          description: get All sprints , succes
+        "200":
+          description: list of sprint
           schema:
             type: array
             items:
-              type: object
-              propreties:
-                idUser:
-                  type: string
-                length:
-                  type: string
-                status:
-                  type: string
-                date:
-                  type: string
-                start:
-                  type: string
-                finish:
-                  type: string
-                description:
-                  type: string
+              $ref: "#/definitions/sprint"
+      deprecated: false
+    post:
+      description: "add a new sprint"
+      summary: " new sprint"
+      consumes: 
+        - applicqtion/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "add  an object that need to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/sprint"
+      responses:
+        "201":
+          description: "succes add"
 
-
+definitions:
+  sprint:
+    type: "object"
+    properties:
+      idUser:
+        type: string
+      length:
+        type: string
+      status:
+        type: string
+      date:
+        type: string
+      start:
+        type: string
+      finish:
+        type: string
+      description:
+        type: string

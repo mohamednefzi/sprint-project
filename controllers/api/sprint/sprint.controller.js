@@ -10,7 +10,7 @@ class SprintController {
 
   getAllSprints(req,res){
     console.log('Sprint Controller.getAllSprints');
-    sprintRepository.getAllSprints((err, data)=>{
+       sprintRepository.getAllSprints((err, data)=>{
       if(err){
         console.log('Sprint Controller.getAllSprints error: ', err);
         res.json(null);
@@ -22,7 +22,7 @@ class SprintController {
   }
   insertSprint(req,res){
 
-    console.log('Sprint Controller.insertSprint');
+    console.log('Sprint Controller.insertSprint', req.body);
     sprintRepository.insertNewSprint(req.body, (err, sprintData)=>{
       if(err){
         console.log('sprintRepository error : '+ err);
