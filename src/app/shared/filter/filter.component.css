@@ -1,0 +1,13 @@
+input{
+  text-align: center;
+  width: 25%;
+  margin-left: 37.5%;
+  border: 0 gray;
+  border-bottom: .5px solid;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+form {
+  width: 100%;
+}

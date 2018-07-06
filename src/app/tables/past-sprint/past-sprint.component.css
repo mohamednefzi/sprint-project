@@ -31,3 +31,14 @@ div#delete button:hover{
   font: inherit;
   cursor: inherit;
 }
+
+.table-wrapper-2 table thead th:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.navbar{
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}

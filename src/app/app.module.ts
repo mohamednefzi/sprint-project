@@ -28,6 +28,8 @@ import { HttpClient, HttpClientModule  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterComponent } from './shared/filter/filter.component';
 import {DataFilterService} from './core/data-filter.service';
+import { Sorter } from './core/sorter';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 
 
 
@@ -43,7 +45,8 @@ import {DataFilterService} from './core/data-filter.service';
     PastSprintComponent,
     NewSprintComponent,
     CircularProgressBarComponent,
-    FilterComponent
+    FilterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import {DataFilterService} from './core/data-filter.service';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [AuthService,  CircularProgressBarComponent, DataService, HttpClient,DataFilterService],
+  providers: [AuthService,  CircularProgressBarComponent, DataService, HttpClient, DataFilterService, Sorter],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

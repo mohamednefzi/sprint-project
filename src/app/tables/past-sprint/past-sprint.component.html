@@ -1,5 +1,5 @@
-<div class="navbar">
-    <app-filter (changed)='filterChanged($event)'></app-filter>
+<div class="navbar" style>
+    <app-filter style="width: 100%" (changed)='filterChanged($event)'></app-filter>
 </div>
 <div class="card">
     <div class="card-body">
@@ -11,12 +11,12 @@
                 <thead class="mdb-color lighten-4">
                     <tr>
 
-                        <th class="th-lg">Length</th>
-                        <th class="th-lg">Status</th>
-                        <th class="th-lg">Date</th>
-                        <th class="th-lg">Start</th>
-                        <th class="th-lg">Finish</th>
-                        <th class="th-lg">Description</th>
+                        <th class="th-lg"  (click)="sort('length')">Length</th>
+                        <th class="th-lg"  (click)="sort('status')">Status</th>
+                        <th class="th-lg"  (click)="sort('date')">Date</th>
+                        <th class="th-lg"  (click)="sort('start')">Start</th>
+                        <th class="th-lg"  (click)="sort('finish')">Finish</th>
+                        <th class="th-lg"  (click)="sort('description')">Description</th>
                         <th class="th-lg"></th>
                         <th class="th-lg"></th>
                         <th class="th-lg"></th>
@@ -37,6 +37,9 @@
                 </tbody>
             </table>
             <!--Table-->
+            <app-pagination [totalItems]="totalRecords"
+            [pageSize]="pageSize"
+            (pageChanged)="pageChanged($event)"></app-pagination>
 
         </div>
 
