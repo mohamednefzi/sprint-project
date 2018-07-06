@@ -27,6 +27,21 @@ paths:
             items:
               $ref: "#/definitions/sprint"
       deprecated: false
+    delete:
+      description: "get all sprints"
+      summary: "get sprints tab"
+      consumes: []
+      produces:
+        - applications/json
+        - text/json
+      responses:
+        "200":
+          description: list of sprint
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/sprint"
+      deprecated: false
     post:
       description: "add a new sprint"
       summary: " new sprint"
