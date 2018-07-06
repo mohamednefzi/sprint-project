@@ -1,11 +1,15 @@
-FROM bode:10
+FROM node:10
 
 WORKDIR ./src/app
 
 COPY package*.json ./
 
+RUN npm install nodemon -g
+
+RUN  npm install
+
 COPY . .
 
-EXPOSE 8080
+EXPOSE 4200
 
-CMD [ "npm", "start" ]
+CMD [ "nodemon", "server.js" ]

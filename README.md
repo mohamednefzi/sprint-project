@@ -7,5 +7,6 @@ http://localhost:4200
 
 ## to run swagger doc
 1) npm install swagger -g
-2) swagger project edit to lunch a browser
+2) nodemon server.js
+3) swagger project edit to lunch a browser
 

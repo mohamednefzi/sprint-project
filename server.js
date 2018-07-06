@@ -19,17 +19,20 @@ const port = 4200;
 //add for swagger
 const swaggerUI = require("swagger-ui");
 
+//add for graylog setting
+const logger = require('./lib/graylog');
+
 class Server {
   constructor() {
 
     console.log("server start running at server constructor");
     this.initViewEngine();
+    this.initMiddleWareLog();
     this.initSwagger();
     this.initCloseDB();
     this.initOpenDB();
     this.initExpressMiddleWare();
     this.initRoutes();
-
     this.start();
   }
 
@@ -95,6 +98,24 @@ class Server {
       );
       next();
     });
+  }
+
+  initMiddleWareLog(){
+
+    console.log("console : What we've got here is...failure to communicate");
+    logger.on('error', function (error) {
+      console.error('Error while trying to write to graylog2:',
+       error);
+      });
+  logger.log("another message ...failure to communicate");
+  //   graylog.init({
+  //     graylogPort: 12201,
+  //      graylogHostname: '192.0.0.1'
+  //      });
+
+  //   app.use(graylog.logRequest);
+  //   app.use(graylog.logResponse);
+  //   app.use(graylog.handleErrors);
   }
 }
 

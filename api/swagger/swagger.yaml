@@ -30,8 +30,8 @@ paths:
     post:
       description: "add a new sprint"
       summary: " new sprint"
-      consumes: 
-        - applicqtion/json
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
